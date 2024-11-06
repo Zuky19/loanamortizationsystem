@@ -1,55 +1,114 @@
 name: CI/CD Pipeline for Loan Amortization System
 
-# Triggers: Run on push and pull request to specific branches
 on:
   push:
     branches:
       - main
       - development
       - Feature
-      - flutter
       - bugfix
       - hotfix
+      - flutter
   pull_request:
     branches:
       - main
       - development
       - Feature
-      - flutter
       - bugfix
       - hotfix
+      - flutter
 
 jobs:
-  test:
+  # Backend job for Node.js/Express and MySQL
+  backend:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14, 16]  # Specify relevant Node.js versions for testing
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_ROOT_PASSWORD }}
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: ${{ secrets.DB_USER }}
+          MYSQL_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+        ports:
+          - 3306:3306
 
     steps:
-      # Step 1: Check out the repository code
       - name: Check out code
         uses: actions/checkout@v2
 
-      # Step 2: Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '16'
 
-      # Step 3: Install dependencies for backend and frontend
-      - name: Install dependencies
-        run: |
-          cd backend && npm install
-          cd ../frontend && npm install
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm install
 
-      # Step 4: Run tests for backend
       - name: Run backend tests
         working-directory: ./backend
+        env:
+          DB_HOST: 127.0.0.1
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: test_db
         run: npm test
 
-      # Step 5: Run tests for frontend
+      - name: Build backend
+        working-directory: ./backend
+        run: npm run build
+
+  # Frontend job for Vite and Tailwind CSS
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
       - name: Run frontend tests
         working-directory: ./frontend
         run: npm test
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build
+
+  # Flutter job only for the flutter branch
+  flutter:
+    if: github.ref == 'refs/heads/flutter'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.5.3'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build Flutter app
+        run: flutter build apk
