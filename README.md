@@ -1,8 +1,1 @@
-"# Loan Amortization System" 
-## Branching Strategy
-- `main`: Production-ready code.
-- `development`: Integrate feature branches here. Periodically merged into `main` for releases.
-- `feature/*`: New features, created off `development` and merged back when complete.
-- `bugfix/*`: Bug fixes during development, created off `development` and merged back.
-- `release/*`: Pre-release testing, created from `development` and merged into both `main` and `development` when done.
-- `hotfix/*`: Critical fixes for `main`, merged into both `main` and `development` after the fix.
+detailed explanation of my workflow: development is a primary branch based off main. It has child branches including feature and flutter that handle distinct features of the loan amortization system. On completion of work on the feature and flutter branches; they are tested individually upon merging with the development parent branch. Subsequently, the development branch is merged into the main branch(testing also occurs before this merge process). the bugfix branch are for bug fixes that occur at the development branch. It is tested and then merged to the development branch when ready. The hotfix branch is for urgent fixes at the main branch. It is also tested before merging to the main branch. Essentially, the main branch contains production ready code.
