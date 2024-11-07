@@ -41,10 +41,10 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Updated version
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3  # Updated version
         with:
           node-version: '16'
 
@@ -71,10 +71,10 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Updated version
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3  # Updated version
         with:
           node-version: '16'
 
@@ -90,19 +90,19 @@ jobs:
         working-directory: ./frontend
         run: npm run build
 
-  # Flutter job only for the flutter branch
+  # Flutter job for the flutter branch
   flutter:
-    if: github.ref == 'refs/heads/flutter'
+    if: github.ref == 'refs/heads/flutter'  # Run only on flutter branch
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Updated version
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.5.3'
+          flutter-version: '2.5.3'  # Ensure this version is supported in the workflow
 
       - name: Install dependencies
         run: flutter pub get
