@@ -1,16 +1,14 @@
 import React from "react";
-import LandingPage from "./pages/LandingPage.tsx";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login.tsx";
 
 const App = () => {
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<LandingPage />}>
-
-      </Route>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Login />}></Route>
+      </Routes>
     </BrowserRouter>
   );
 };
