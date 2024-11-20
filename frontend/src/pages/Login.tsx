@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import loginbg from "publicloginbg.png";
 
 const Login = () => {
   const [username, setUsername] = useState("");
