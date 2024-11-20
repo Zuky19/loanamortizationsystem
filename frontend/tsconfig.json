@@ -3,14 +3,10 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-<<<<<<< HEAD
-  ]
-=======
   ],
 
   "compilerOptions": {
     "noUnusedLocals": false,
     "noUnusedParameters": false
   }
->>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
 }
