@@ -65,14 +65,17 @@ const Home: React.FC = () => {
     <img src={AboutIcon} alt="About Us" />
   </div>
 
-  {/* Placeholder for Right-Side Image */}
-  <div className="absolute top-[-430px] left-[823px] w-[541px] h-[2219px] z-[2]">
-      <div className="absolute w-full h-full">
-        <img src={PayupIcon} alt="Payup" className="w-full h-full object-cover rounded-r-[35px]" />
-      </div>
-    </div>
+ {/* Placeholder for Right-Side Image */}
+<div className="absolute top-[-4px] left-[699px] w-[730px] h-[1271px] z-[2]">
+  <div className="absolute w-full h-full rounded-r-[35px] border-[1px] border-[#D2DCDE]">
+    <img 
+      src={PayupIcon} 
+      alt="Payup" 
+      className="w-full h-full object-cover rounded-r-[35px]" 
+    />
   </div>
-
+</div>
+</div>
   
   );
 };
