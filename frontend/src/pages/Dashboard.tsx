@@ -1,4 +1,8 @@
 import React from "react";
+import clock from "../public/dashboard-images/clock.png";
+import barchart from "../public/dashboard-images/chart-bar.png";
+import naira from "../public/dashboard-images/naira.png";
+import arrowrefresh from "../public/dashboard-images/Arrow-Refresh.png";
 
 const Dashboard = () => {
   return (
@@ -6,7 +10,7 @@ const Dashboard = () => {
       <div className="flex h-[4vh] flex-row justify-between">
         <img />
         <div>
-          <input className="w-[14vw] rounded-[5px] border border-[#7B809A]" />
+          <input className="w-[14vw] rounded-[5px] border border-[#4F4F52B2] bg-[#7B809A]" />
           <img />
           <img />
         </div>
@@ -21,37 +25,65 @@ const Dashboard = () => {
           {/* First Row */}
           <div className="mb-[5vh] flex w-full flex-row justify-between pl-[9vw] pr-[12vw]">
             <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-              <div className="relative left-[7%] h-[6.25vh] w-[6.25vh] translate-y-[-20%] rounded-[12px] bg-[#3E3D45]"></div>
+              <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={clock} />
+              </div>
             </div>
             <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-              <div className="relative left-[7%] h-[6.25vh] w-[6.25vh] translate-y-[-20%] rounded-[12px] bg-[#3E3D45]"></div>
+              <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={barchart} />
+              </div>
             </div>
             <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-              <div className="relative left-[7%] h-[6.25vh] w-[6.25vh] translate-y-[-20%] rounded-[12px] bg-[#F58C0AD4]"></div>
+              <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#F58C0AD4]">
+                <img src={naira} />
+              </div>
             </div>
             <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-              <div className="relative left-[7%] h-[6.25vh] w-[6.25vh] translate-y-[-20%] rounded-[12px] bg-[#F58C0AD4]"></div>
+              <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#F58C0AD4]">
+                <img src={naira} />
+              </div>
             </div>
           </div>
           {/* Second Row */}
           <div className="mb-[4.5vh] flex w-full flex-row justify-between pl-[9vw] pr-[12vw]">
             <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-              <div className="relative left-[7%] h-[6.25vh] w-[6.25vh] translate-y-[-20%] rounded-[12px] bg-[#3E3D45]"></div>
+              <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={barchart} />
+              </div>
             </div>
             <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-              <div className="relative left-[7%] h-[6.25vh] w-[6.25vh] translate-y-[-20%] rounded-[12px] bg-[#3E3D45]"></div>
+              <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={arrowrefresh} />
+              </div>
             </div>
             <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-              <div className="relative left-[7%] h-[6.25vh] w-[6.25vh] translate-y-[-20%] rounded-[12px] bg-[#F58C0AD4]"></div>
+              <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#F58C0AD4]">
+                <img src={naira} />
+              </div>
             </div>
             <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-              <div className="relative left-[7%] h-[6.25vh] w-[6.25vh] translate-y-[-20%] rounded-[12px] bg-[#F58C0AD4]"></div>
+              <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#F58C0AD4]">
+                <img src={barchart} />
+              </div>
             </div>
           </div>
           {/* Third Row */}
           <div className="mb-[3vh] flex w-full flex-row justify-between pl-[9vw] pr-[12vw]">
-            <div className="h-[30vh] w-[25vw] rounded-[12px] bg-white shadow"></div>
-            <div className="h-[30vh] w-[25vw] rounded-[12px] bg-white shadow"></div>
+            <div className="flex h-[30vh] w-[25vw] flex-col items-center rounded-[12px] bg-white shadow">
+              <div className="relative bottom-[10%] h-[62%] w-[92%] rounded-[8px] bg-[#F58C0AD4]"></div>
+              <div>
+                <p className="text-[20px] font-bold text-black opacity-[50%]">
+                  Monthly Payments
+                </p>
+              </div>
+            </div>
+            <div className="flex h-[30vh] w-[25vw] flex-col items-center rounded-[12px] bg-white shadow">
+              <div className="relative bottom-[10%] h-[62%] w-[92%] rounded-[8px] bg-[#000000D4]"></div>
+              <p className="text-[20px] font-bold text-black opacity-[50%]">
+                ₦ Interest Paid
+              </p>
+            </div>
           </div>
           {/* Button Row */}
           <div className="flex h-[5vh] w-full flex-row justify-between pl-[5vw] pr-[15vh]">
