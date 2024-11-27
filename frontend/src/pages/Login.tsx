@@ -1,11 +1,37 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    if (!username || username.length < 3) {
+      alert("Username must be at least 3 characters");
+      return;
+    }
+    if (!password || password.length < 8) {
+      alert("Password must be at least 8 characters");
+      return;
+    }
+
+    axios
+      .post("http://localhost:3000/api/user", {
+        username: username,
+        password: password,
+      })
+      .then((res) => {
+        if (res.data == "User Created Successfully") {
+          alert("User Created Successfully");
+        } else {
+          alert("Problem Creating User");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="flex h-[100vh] flex-row">
@@ -18,7 +44,7 @@ const Login = () => {
           <div className="flex flex-col">
             <div className="flex pb-[7vh]">
               <input
-                className="w-full border-b border-b-black pb-[10px] font-medium"
+                className="w-full border-b border-b-black pb-[10px] font-medium focus:outline-none"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -26,7 +52,7 @@ const Login = () => {
             </div>
             <div className="">
               <input
-                className="w-full border-b border-b-black pb-[10px] font-medium"
+                className="w-full border-b border-b-black pb-[10px] font-medium focus:outline-none"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
