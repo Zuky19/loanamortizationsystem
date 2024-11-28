@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import { useAuth } from "../auth/AuthProvider";
 
 const Login = () => {
+  const { handleLogin } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,21 +17,12 @@ const Login = () => {
       return;
     }
 
-    axios
-      .post("http://localhost:3000/api/user", {
-        username: username,
-        password: password,
-      })
-      .then((res) => {
-        if (res.data == "User Created Successfully") {
-          alert("User Created Successfully");
-        } else {
-          alert("Problem Creating User");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      await handleLogin(username, password);
+      console.log("Login Successful");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
