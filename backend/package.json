@@ -8,7 +8,8 @@
     "build": "echo 'No build step needed for backend'",
     "test": "jest",
     "serve": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +17,10 @@
     "express": "^4.21.1",
     "js-sha256": "^0.11.0",
     "mongodb": "^6.11.0",
-    "mongoose": "^8.8.3"
+    "mongoose": "^8.8.3",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "jest": "^27.0.0",

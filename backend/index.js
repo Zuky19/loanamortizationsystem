@@ -1,18 +1,20 @@
+//import { sha256 } from "js-sha256";
+//const userRoutes = require("./routes/userRoutes");
 const express = require("express");
-const mongoose = require("mongoose");
-const memberRoutes = require("./routes/MemberRoutes");
-//const router = require("./routes/userRoutes");
-
 const app = express();
 const port = 4000;
+const mongoose = require("mongoose");
+const memberRoutes = require("./routes/MemberRoutes");
 
 app.use(express.json());
+
+app.use("/api/members", memberRoutes);
+
+//app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
-
-app.use("/api/members", memberRoutes);
 
 //app.use("/api/user", userRoutes);
 

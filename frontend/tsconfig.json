@@ -6,6 +6,7 @@
   ],
 
   "compilerOptions": {
+    "jsx": "react",
     "noUnusedLocals": false,
     "noUnusedParameters": false
   }

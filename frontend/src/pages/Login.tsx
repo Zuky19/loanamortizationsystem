@@ -1,36 +1,60 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import { useAuth } from "../auth/AuthProvider";
+import { useNavigate } from "react-router-dom";
+
+interface loginType {
+  username: string;
+  password: string;
+}
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const { handleLogin } = useAuth();
+  const [loginData, setLoginData] = useState<loginType>({
+    username: "",
+    password: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    if (failedLogin) {
+      setFailedLogin(false);
+    }
+
+    setLoginData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const [failedLogin, setFailedLogin] = useState(false);
 
   const handleSubmit = async () => {
-    if (!username || username.length < 3) {
+    if (!loginData.username || loginData.username.length < 3) {
       alert("Username must be at least 3 characters");
       return;
     }
-    if (!password || password.length < 8) {
+    if (!loginData.password || loginData.password.length < 8) {
       alert("Password must be at least 8 characters");
       return;
     }
 
-    axios
-      .post("http://localhost:3000/api/user", {
-        username: username,
-        password: password,
-      })
-      .then((res) => {
-        if (res.data == "User Created Successfully") {
-          alert("User Created Successfully");
-        } else {
-          alert("Problem Creating User");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const loginSuccess = await handleLogin(
+        loginData.username,
+        loginData.password,
+      );
+      if (loginSuccess) {
+        navigate("/Dashboard");
+        return;
+      }
+      setFailedLogin(true);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -42,20 +66,28 @@ const Login = () => {
             <p className="text-[45px] font-bold text-black">Login</p>
           </div>
           <div className="flex flex-col">
-            <div className="flex pb-[7vh]">
+            {failedLogin && (
+              <p className="text-red-500">Username or Password is incorrect</p>
+            )}
+            <div className="flex-col pb-[7vh]">
               <input
-                className="w-full border-b border-b-black pb-[10px] font-medium focus:outline-none"
+                className="w-full border-b border-b-black pb-[10px] font-medium invalid:border-red-500 focus:outline-none"
                 placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={loginData.username}
+                name="username"
+                onChange={(e) => handleInputChange(e)}
+                minLength={3}
               />
             </div>
-            <div className="">
+            <div className="flex flex-col">
               <input
-                className="w-full border-b border-b-black pb-[10px] font-medium focus:outline-none"
+                className="w-full border-b border-b-black pb-[10px] font-medium invalid:border-red-500 focus:outline-none"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={loginData.password}
+                name="password"
+                onChange={(e) => handleInputChange(e)}
+                type="password"
+                minLength={8}
               />
             </div>
           </div>
@@ -64,7 +96,7 @@ const Login = () => {
           </div>
 
           <div
-            className="flex h-[6.5vh] w-[22vw] flex-row items-center justify-center rounded-[100px] bg-[#F58C0ACC]"
+            className="flex h-[6.5vh] w-[22vw] cursor-pointer flex-row items-center justify-center rounded-[100px] bg-[#F58C0ACC]"
             onClick={handleSubmit}
           >
             <p className="text-white">Login</p>
