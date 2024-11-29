@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const contributionSchema = new mongoose.Schema(
+const contributionSchema = new Schema(
   {
     contribution_id: { type: String, required: true, unique: true },
     member_id: { type: String, required: true, ref: "Member" },
@@ -11,4 +11,4 @@ const contributionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Contribution", contributionSchema);
+export default model("Contribution", contributionSchema);

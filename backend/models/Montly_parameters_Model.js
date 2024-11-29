@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const monthlyParameterSchema = new mongoose.Schema(
+const monthlyParameterSchema = new Schema(
   {
     month_id: { type: String, required: true, unique: true },
     month: { type: String, required: true },
@@ -13,4 +13,4 @@ const monthlyParameterSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("MonthlyParameter", monthlyParameterSchema);
+export default model("MonthlyParameter", monthlyParameterSchema);

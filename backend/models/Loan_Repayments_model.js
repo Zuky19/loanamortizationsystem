@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const repaymentSchema = new mongoose.Schema(
+const repaymentSchema = new Schema(
   {
     repayment_id: { type: String, required: true, unique: true },
     loan_id: { type: String, required: true, ref: "Loan" },
@@ -10,4 +10,4 @@ const repaymentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("LoanRepayment", repaymentSchema);
+export default model("LoanRepayment", repaymentSchema);

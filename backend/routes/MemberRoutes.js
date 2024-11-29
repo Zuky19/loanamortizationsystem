@@ -6,7 +6,7 @@ const {
   getMemberById,
   updateMember,
   deleteMember,
-} = require("../controller/memberController");
+} = require("../controller/memberController").default;
 
 // Define routes
 router.post("/", createMember); // Create a new member

@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const loanSchema = new mongoose.Schema(
+const loanSchema = new Schema(
   {
     loan_id: { type: String, required: true, unique: true },
     member_id: { type: String, required: true, ref: "Member" },
@@ -12,4 +12,4 @@ const loanSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Loan", loanSchema);
+export default model("Loan", loanSchema);
