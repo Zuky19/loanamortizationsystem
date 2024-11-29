@@ -3,17 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "build": "echo 'No build step needed for backend'",
-"test": "jest"  
+    "test": "jest",
+    "serve": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "js-sha256": "^0.11.0",
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.3"
   },
   "devDependencies": {
-    "jest": "^27.0.0"
+    "jest": "^27.0.0",
+    "nodemon": "^3.1.7"
   }
 }
-

@@ -9,4 +9,4 @@ const createUser = (req, res) => {
   res.send("User Created Successfully");
 };
 
-export default { createUser };
+module.exports = createUser;
