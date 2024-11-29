@@ -1,27 +1,19 @@
 import axios from "axios";
-import React from "react";
-import jwt from "jsonwebtoken";
+import { jwtDecode } from "jwt-decode";
 
 const SECRET_KEY = "yeiq-xwat-vpwc-otjv";
 const payload = { username: "testUser", role: "tester" };
 
-const generateAuthToken = () => {
-  return jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
-};
-
 export const login = async (username: string, password: string) => {
-  axios
-    .post("http://localhost:3000/api/user", {
-      username: username,
-      password: password,
-    })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
+  try {
+    const response = await axios.post("http://localhost:4000/api/user/login", {
+      username,
+      password,
     });
-
-  const authToken = generateAuthToken();
-  return [200, { authToken, user: "testUser" }] as const;
+    const result = response.data;
+    return result;
+  } catch (error) {
+    console.error("Login failed:", error);
+    return { status: 500, message: "Internal server error" };
+  }
 };

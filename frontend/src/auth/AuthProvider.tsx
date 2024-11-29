@@ -3,9 +3,17 @@ import { login } from "./api/auth";
 
 type AuthContext = {
   authToken?: string | null;
-  currentUser?: string | null;
-  handleLogin: (username: string, password: string) => Promise<void>;
+  currentUser?: User | null;
+  handleLogin: (
+    username: string,
+    password: string,
+  ) => Promise<true | undefined>;
   handleLogout: () => Promise<void>;
+};
+
+type User = {
+  username: string;
+  role: string;
 };
 
 const AuthContext = createContext<AuthContext | undefined>(undefined);
@@ -14,16 +22,21 @@ type AuthProviderProps = PropsWithChildren;
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authToken, setAuthToken] = useState<string | null>();
-  const [currentUser, setCurrentUser] = useState<string | null>();
+  const [currentUser, setCurrentUser] = useState<User | null>();
 
   const handleLogin = async (username: string, password: string) => {
     try {
       const response = await login(username, password);
-      const { authToken, user } = response[1];
-
-      setAuthToken(authToken);
-      setCurrentUser(user);
-    } catch {
+      const { status } = response;
+      if (status == 200) {
+        const { authToken, user } = response;
+        setAuthToken(authToken);
+        setCurrentUser(user);
+        return true;
+      }
+      throw new Error("Invalid login credentials");
+    } catch (error) {
+      console.error("Login faliled", error);
       setAuthToken(null);
       setCurrentUser(null);
     }
