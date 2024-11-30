@@ -1,18 +1,28 @@
-const express = require("express");
-const router = express.Router();
-const {
+import express from "express";
+import {
+  loginMember,
   createMember,
   getAllMembers,
   getMemberById,
   updateMember,
   deleteMember,
-} = require("../controller/memberController").default;
+  getMemberByUsername,
+} from "../controller/memberController.js";
 
-// Define routes
-router.post("/", createMember); // Create a new member
-router.get("/", getAllMembers); // Get all members
-router.get("/:id", getMemberById); // Get a member by ID
+const router = express.Router();
+router.post("/login", loginMember);
+
+router.post("/", createMember);
+
+// Member retrieval routes
+router.get("/", getAllMembers);
+router.get("/username/:username", getMemberByUsername);
+router.get("/:id", getMemberById);
+
+// Member update route
 router.put("/:id", updateMember); // Update a member by ID
+
+// Member deletion route
 router.delete("/:id", deleteMember); // Delete a member by ID
 
-module.exports = router;
+export default router;

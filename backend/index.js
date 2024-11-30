@@ -4,7 +4,8 @@ import express, { json } from "express";
 const app = express();
 const port = 4000;
 import { connect } from "mongoose";
-import memberRoutes from "./routes/MemberRoutes";
+import memberRoutes from "./routes/MemberRoutes.js";
+import cors from "cors";
 
 app.use(json());
 
