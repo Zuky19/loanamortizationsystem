@@ -17,6 +17,13 @@
 
 .poppinsfont {
   font-family: "Poppins", sans-serif;
-  font-weight: 600;
   font-style: italic;
+}
+
+.AdminNavigationDashboard {
+  background-image: linear-gradient(#DE2769, #781539);
+}
+
+.baloobhaifont{
+  font-family: 'Baloo Bahi';
 }

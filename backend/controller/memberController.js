@@ -100,4 +100,5 @@ export default {
   getMemberById,
   updateMember,
   deleteMember,
+  loginMember,
 };

@@ -3,6 +3,7 @@ import Login from "./pages/Login.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import TaskManagemnetDashboard from "./pages/TaskManagemnetDashboard.tsx";
 
 const App = () => {
   return (
@@ -10,6 +11,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/Login" element={<Login />}></Route>
+        <Route
+          path="/taskmanagement"
+          element={<TaskManagemnetDashboard />}
+        ></Route>
         <Route
           path="/Dashboard"
           element={
