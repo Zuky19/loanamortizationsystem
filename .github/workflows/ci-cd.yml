@@ -41,10 +41,17 @@ jobs:
 
     steps:
       - name: Check out code
+<<<<<<< HEAD
+        uses: actions/checkout@v3  # Updated version
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Updated version
+=======
         uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
+>>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
         with:
           node-version: '16'
 
@@ -71,10 +78,17 @@ jobs:
 
     steps:
       - name: Check out code
+<<<<<<< HEAD
+        uses: actions/checkout@v3  # Updated version
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Updated version
+=======
         uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
+>>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
         with:
           node-version: '16'
 
@@ -90,19 +104,33 @@ jobs:
         working-directory: ./frontend
         run: npm run build
 
+<<<<<<< HEAD
+  # Flutter job for the flutter branch
+  flutter:
+    if: github.ref == 'refs/heads/flutter'  # Run only on flutter branch
+=======
   # Flutter job only for the flutter branch
   flutter:
     if: github.ref == 'refs/heads/flutter'
+>>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out code
+<<<<<<< HEAD
+        uses: actions/checkout@v3  # Updated version
+=======
         uses: actions/checkout@v2
+>>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
+<<<<<<< HEAD
+          flutter-version: '2.5.3'  # Ensure this version is supported in the workflow
+=======
           flutter-version: '2.5.3'
+>>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
 
       - name: Install dependencies
         run: flutter pub get
