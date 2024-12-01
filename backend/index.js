@@ -1,10 +1,10 @@
-//import { sha256 } from "js-sha256";
-//const userRoutes = require("./routes/userRoutes");
 import express, { json } from "express";
+import { connect } from "mongoose";
+import memberRoutes from "./routes/MemberRoutes.js";
+import cors from "cors";
+
 const app = express();
 const port = 4000;
-import { connect } from "mongoose";
-import memberRoutes from "./routes/MemberRoutes";
 
 app.use(json());
 

@@ -1,3 +1,7 @@
+import ReactDOM from "react-dom/client";
+import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
@@ -9,6 +13,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Define routes for LandingPage, SignUpPage, and Home */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/admindashboard" element={<Dashboard />} />
+
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/Login" element={<Login />}></Route>
         <Route
