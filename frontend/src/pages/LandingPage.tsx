@@ -8,6 +8,10 @@ const LandingPage = () => {
   const { height } = useWindowDimensions();
   const navigate = useNavigate();
   return (
+
+    <div className="flex flex-1 flex-col">
+      <div>i</div>
+
     <div className="flex flex-1 flex-col items-center bg-[#D9D9D9]">
       <img
         src={frcimage}
@@ -47,6 +51,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
