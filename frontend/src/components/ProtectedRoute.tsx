@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { useAuth } from "../auth/AuthProvider";
 
 type ProtectedRouteProps = PropsWithChildren & {
@@ -11,6 +11,7 @@ const ProtectedRoute = ({ allowedRoles, children }: ProtectedRouteProps) => {
     return <div>Loading...</div>; //add Loading Later
   }
   if (currentUser === null || !allowedRoles?.includes(currentUser.role)) {
+    console.log(currentUser?.role);
     return <div>Permission Denied</div>;
   }
   return children;

@@ -7,10 +7,9 @@ const app = express();
 const port = 4000;
 
 app.use(json());
+app.use(cors());
 
 app.use("/api/members", memberRoutes);
-
-app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello World");

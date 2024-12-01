@@ -1,5 +1,6 @@
 import Member from "../models/Memebers_Model.js"; // Ensure correct path and file extension
 import SHA256 from "crypto-js/sha256.js";
+import User from "../models/usersModel.js";
 
 // Helper function to hash passwords
 const hashPassword = (password) => {
@@ -19,7 +20,8 @@ export const loginMember = async (req, res) => {
     }
 
     // Find the member by username
-    const user = await Member.findOne({ username });
+    const user = await User.findOne({ username });
+    console.log(user);
 
     if (!user) {
       return res.status(404).json({ message: "User not found." });
@@ -35,10 +37,9 @@ export const loginMember = async (req, res) => {
     res.status(200).json({
       message: "Login successful.",
       user: {
-        id: user._id,
         username: user.username,
         full_name: user.full_name,
-        role: "member", // Add roles if applicable
+        role: user.role,
       },
     });
   } catch (error) {
