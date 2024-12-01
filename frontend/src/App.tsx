@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";  
-
+import Dashboard from "./pages/AdminDasboard";
 const App = () => {
   return (
     <BrowserRouter>
@@ -12,7 +12,8 @@ const App = () => {
         {/* Define routes for LandingPage, SignUpPage, and Home */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} /> {/* Add the SignUp route */}
+        <Route path="/signup" element={<SignUp />} /> 
+        <Route path="/admindashboard" element={<Dashboard />} /> 
       </Routes>
     </BrowserRouter>
   );

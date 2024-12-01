@@ -8,5 +8,10 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+  fontFamily: {
+    baloo: ['"Baloo Bhai 2"', 'cursive'],
+  },
+
+
+};
 
