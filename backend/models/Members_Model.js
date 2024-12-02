@@ -12,6 +12,8 @@ const memberSchema = new Schema(
     account_number: { type: String },
     membership_year: { type: Number, required: true },
     occupation: { type: String },
+    role: { type: String },
+    email: { type: String },
   },
   { timestamps: true }
 );

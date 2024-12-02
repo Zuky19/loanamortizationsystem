@@ -16,7 +16,7 @@ router.post("/", createMember);
 
 // Member retrieval routes
 router.get("/", getAllMembers);
-router.get("/username/:username", getMemberByUsername);
+router.get("/:username", getMemberByUsername);
 router.get("/:id", getMemberById);
 
 // Member update route

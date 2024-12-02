@@ -1,4 +1,4 @@
-import Member from "../models/Memebers_Model.js"; // Ensure correct path and file extension
+import Member from "../models/Members_Model.js"; // Ensure correct path and file extension
 import SHA256 from "crypto-js/sha256.js";
 
 // Helper function to hash passwords
