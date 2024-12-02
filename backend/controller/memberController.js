@@ -56,7 +56,7 @@ export const createMember = async (req, res) => {
     if (!username || !password) {
       return res
         .status(400)
-        .json({ message: "Username and password are required." });
+        .json({ message: "Username and Password are required." });
     }
 
     // Check if username already exists
