@@ -2,6 +2,7 @@ import express, { json } from "express";
 import { connect } from "mongoose";
 import memberRoutes from "./routes/MemberRoutes.js";
 import cors from "cors";
+import loanRoutes from "./routes/loanRoutes.js";
 
 const app = express();
 const port = 4000;
@@ -10,6 +11,7 @@ app.use(json());
 app.use(cors());
 
 app.use("/api/members", memberRoutes);
+app.use("/api/loans", loanRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
