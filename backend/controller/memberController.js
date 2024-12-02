@@ -20,7 +20,7 @@ export const loginMember = async (req, res) => {
     }
 
     // Find the member by username
-    const user = await User.findOne({ username });
+    const user = await Member.findOne({ username });
     console.log(user);
 
     if (!user) {
