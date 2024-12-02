@@ -5,9 +5,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
-import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import ProtectedRoute from "../src/Components/ProtectedRoute.tsx";
 import TaskManagemnetDashboard from "./pages/TaskManagemnetDashboard.tsx";
 import AdminDashboard from "./pages/AdminDasboard.tsx";
+import YearlyBreakdown from "./pages/YearlyBreakdown.tsx";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/yearly" element={<YearlyBreakdown />} />
         <Route
           path="/admin"
           element={

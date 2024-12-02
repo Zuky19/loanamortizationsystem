@@ -9,14 +9,16 @@ import {
   getMemberByUsername,
 } from "../controller/memberController.js";
 
-export const router = express.Router();
+const router = express.Router();
+router.post("/login", loginMember);
 
-// Define routes
-router.post("/", createMember); // Create a new member
-router.get("/", getAllMembers); // Get all members
-router.post("/login", loginMember); //Login Member
-router.get("/:id", getMemberById); // Get a member by ID
-router.get("/username/:username", getMemberByUsername);
+router.post("/", createMember);
+
+// Member retrieval routes
+router.get("/", getAllMembers);
+router.get("/:username", getMemberByUsername);
+router.get("/:id", getMemberById);
+
 // Member update route
 router.put("/:id", updateMember); // Update a member by ID
 // Member deletion route
