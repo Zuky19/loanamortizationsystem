@@ -1,17 +1,39 @@
+import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
-import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import ProtectedRoute from "../src/Components/ProtectedRoute.tsx";
+import TaskManagemnetDashboard from "./pages/TaskManagemnetDashboard.tsx";
+import AdminDashboard from "./pages/AdminDasboard.tsx";
+import YearlyBreakdown from "./pages/YearlyBreakdown.tsx";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />}></Route>
-        <Route path="/Login" element={<Login />}></Route>
+        {/* Define routes for LandingPage, SignUpPage, and Home */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/yearly" element={<YearlyBreakdown />} />
         <Route
-          path="/Dashboard"
+          path="/admin"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/login" element={<Login />}></Route>
+        <Route
+          path="/taskmanagement"
+          element={<TaskManagemnetDashboard />}
+        ></Route>
+        <Route
+          path="/dashboard"
           element={
             <ProtectedRoute allowedRoles={["user"]}>
               <Dashboard />

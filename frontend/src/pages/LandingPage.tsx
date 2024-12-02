@@ -1,8 +1,7 @@
-import React from "react";
 import logo from "../public/logo.png";
 import frcimage from "../public/wave.png";
 import useWindowDimensions from "../hooks/windowDimensions";
-import { Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const { height } = useWindowDimensions();
