@@ -43,13 +43,17 @@ const Login = () => {
     }
 
     try {
-      const loginSuccess = await handleLogin(
-        loginData.username,
-        loginData.password,
-      );
-      if (loginSuccess) {
-        navigate("/Dashboard");
-        return;
+      const user = await handleLogin(loginData.username, loginData.password);
+      if (user) {
+        console.log(user);
+        if (user && user.role === "admin") {
+          navigate("/admin");
+          return;
+        }
+        if (user && user.role === "user") {
+          navigate("/dashboard");
+          return;
+        }
       }
       setFailedLogin(true);
     } catch (error) {

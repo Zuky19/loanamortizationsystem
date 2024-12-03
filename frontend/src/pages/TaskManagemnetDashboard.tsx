@@ -1,11 +1,11 @@
 import Calendar from "react-calendar";
 import AdminNavigation from "../components/AdminNavigation";
-import { useState } from "react";
+//import { useState } from "react";
 import notification from "../public/TaskManagementDashboard/notificationempty.png";
 
 const TaskManagemnetDashboard = () => {
   const currentDate = new Date();
-  const [date, setDate] = useState<Date>(currentDate);
+  //const [date, setDate] = useState<Date>(currentDate);
 
   return (
     <div className="flex h-[100vh] w-[100vw] flex-row">

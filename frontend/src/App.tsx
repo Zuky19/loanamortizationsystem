@@ -5,7 +5,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
+<<<<<<< HEAD
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
+=======
+import ProtectedRoute from "../src/components/ProtectedRoute.tsx";
+>>>>>>> 8077bb78ef2365e248c6da34da41168d7a867b3a
 import TaskManagemnetDashboard from "./pages/TaskManagemnetDashboard.tsx";
 import AdminDashboard from "./pages/AdminDasboard.tsx";
 import YearlyBreakdown from "./pages/YearlyBreakdown.tsx";

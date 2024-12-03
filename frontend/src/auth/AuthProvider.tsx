@@ -6,13 +6,13 @@ type AuthContext = {
   handleLogin: (
     username: string,
     password: string,
-  ) => Promise<true | undefined>;
+  ) => Promise<User | undefined>;
   handleLogout: () => Promise<void>;
 };
 
 type User = {
-  username: string;
   full_name: string;
+  username: string;
   role: string;
 };
 
@@ -27,12 +27,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       const response = await login(username, password);
 
+      const user = response?.user;
       console.log(response);
-      console.log(response.user);
-      const user = response.user as User;
       setCurrentUser(user);
-      console.log("User: ", currentUser);
-      return true;
+      console.log("User: ", response.user);
+      return response.user;
     } catch (error) {
       console.error("Login faliled", error);
       setCurrentUser(null);
@@ -60,7 +59,7 @@ export default AuthProvider;
 export const useAuth = () => {
   const context = useContext(AuthContext);
 
-  if (context == undefined) {
+  if (context === undefined) {
     throw new Error("useAuth must be used inside of an AuthProvider");
   }
   return context;
