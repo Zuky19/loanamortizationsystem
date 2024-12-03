@@ -1,12 +1,10 @@
-import React from "react";
-
 const YearlyBreakdown = () => {
   return (
     <div className="flex h-screen flex-row bg-gray-100">
       {/* Sidebar */}
-      <div className="leftside bg-orange-500 h-full w-[20%] flex flex-col items-center justify-start p-6 text-white">
+      <div className="leftside flex h-full w-[20%] flex-col items-center justify-start bg-orange-500 p-6 text-white">
         <div className="profile flex flex-col items-center justify-center pb-8">
-          <div className="h-24 w-24 rounded-full bg-gray-200 mb-4"></div>
+          <div className="mb-4 h-24 w-24 rounded-full bg-gray-200"></div>
           <p className="text-lg font-semibold">Iyobor Progressive Union</p>
         </div>
         <ul className="menu flex flex-col gap-4 text-lg">
@@ -69,7 +67,7 @@ const YearlyBreakdown = () => {
           <div className="rounded-lg bg-white p-4 shadow">
             <h2 className="pb-4 text-lg font-bold">My Card</h2>
             <div className="flex flex-col items-center">
-              <div className="mb-4 h-24 w-36 bg-orange-300 rounded-lg"></div>
+              <div className="mb-4 h-24 w-36 rounded-lg bg-orange-300"></div>
               <p className="font-medium">Card Holder: Brenda</p>
               <p>**** **** **** 1234</p>
             </div>

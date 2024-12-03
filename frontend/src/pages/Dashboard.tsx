@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import clock from "../public/dashboard-images/clock.png";
 import barchart from "../public/dashboard-images/chart-bar.png";
 import naira from "../public/dashboard-images/naira.png";
@@ -10,8 +10,8 @@ import notification from "../public/dashboard-images/notification.png";
 import DashboardLeftSide from "../components/DashboardLeftSide";
 
 const Dashboard = () => {
-  const [duePayments, setDuePayments] = useState("0");
-  const [totalInterest, setTotalInterest] = useState("0");
+  // const [duePayments, setDuePayments] = useState("0");
+  // const [totalInterest, setTotalInterest] = useState("0");
   return (
     <div className="flex flex-1 flex-col bg-[#D9D9D9]">
       {/* Left Section */}
@@ -41,7 +41,7 @@ const Dashboard = () => {
               </div>
               <div className="flex flex-col items-end pr-[1vw]">
                 <p className="text-[14px] text-[#7B809A]">Due Payments</p>
-                <p className="text-[24px] font-bold">{duePayments}</p>
+                {/* <p className="text-[24px] font-bold">{duePayments}</p> */}
               </div>
             </div>
             <div className="flex flex-row pl-[6%]">
