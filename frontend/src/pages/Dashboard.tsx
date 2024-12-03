@@ -11,6 +11,7 @@ import DashboardLeftSide from "../components/DashboardLeftSide";
 
 const Dashboard = () => {
   const [duePayments, setDuePayments] = useState("0");
+  const [totalInterest, setTotalInterest] = useState("0");
   return (
     <div className="flex flex-1 flex-col bg-[#D9D9D9]">
       {/* Left Section */}

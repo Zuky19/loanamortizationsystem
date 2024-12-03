@@ -11,8 +11,8 @@ type AuthContext = {
 };
 
 type User = {
-  username: string;
   full_name: string;
+  username: string;
   role: string;
 };
 

@@ -11,7 +11,7 @@ interface loginType {
 const Login = () => {
   const navigate = useNavigate();
 
-  const { handleLogin } = useAuth();
+  const { handleLogin, currentUser } = useAuth();
   const [loginData, setLoginData] = useState<loginType>({
     username: "",
     password: "",
@@ -48,7 +48,11 @@ const Login = () => {
         loginData.password,
       );
       if (loginSuccess) {
-        navigate("/Dashboard");
+        if (currentUser && currentUser.role === "admin") {
+          navigate("/admin");
+          return;
+        }
+        navigate("/dashboard");
         return;
       }
       setFailedLogin(true);
