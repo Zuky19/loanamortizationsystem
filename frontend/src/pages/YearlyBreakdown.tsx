@@ -1,77 +1,72 @@
 import React from "react";
+import Headers from "../components/Headers";
+import LoanReturned from "../components/LoanReturned";
+import CardReport from "../components/CardReport";
+import TotalPayments from "../components/TotalPayments";
+import LoanRepayments from "../components/LoanRepayments";
+import SidebarMenu from "../components/SidebarMenu";
 
-const YearlyBreakdown = () => {
+const YearlyBreakdown: React.FC = () => {
   return (
-    <div className="flex h-screen flex-row bg-gray-100">
+    <div className="flex h-screen">
       {/* Sidebar */}
-      <div className="leftside bg-orange-500 h-full w-[20%] flex flex-col items-center justify-start p-6 text-white">
-        <div className="profile flex flex-col items-center justify-center pb-8">
-          <div className="h-24 w-24 rounded-full bg-gray-200 mb-4"></div>
-          <p className="text-lg font-semibold">Iyobor Progressive Union</p>
-        </div>
-        <ul className="menu flex flex-col gap-4 text-lg">
-          <li className="cursor-pointer hover:text-orange-300">Dashboard</li>
-          <li className="cursor-pointer hover:text-orange-300">Contact Us</li>
-          <li className="cursor-pointer hover:text-orange-300">Settings</li>
-        </ul>
-      </div>
+      <SidebarMenu />
 
       {/* Main Content */}
-      <div className="flex h-full w-[80%] flex-col p-6">
-        {/* Header */}
-        <div className="flex items-center justify-between pb-6">
-          <h1 className="text-2xl font-bold">Welcome Back, Brenda</h1>
-          <input
-            type="text"
-            placeholder="Search here..."
-            className="rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:outline-none"
-          />
-        </div>
+      <div className="flex flex-1 flex-col bg-gray-100 p-6">
+        {/* Header Section */}
+        <Headers />
 
-        {/* Yearly Breakdown */}
-        <div className="grid grid-cols-4 gap-6 pb-6">
-          <div className="flex h-28 flex-col items-center justify-center rounded-lg bg-orange-200 text-orange-900 shadow">
-            <p className="text-lg font-medium">Total Payments</p>
-            <p className="text-2xl font-bold">25K</p>
-          </div>
-          <div className="flex h-28 flex-col items-center justify-center rounded-lg bg-orange-200 text-orange-900 shadow">
-            <p className="text-lg font-medium">Total Withdrawals</p>
-            <p className="text-2xl font-bold">15K</p>
-          </div>
-          <div className="flex h-28 flex-col items-center justify-center rounded-lg bg-orange-200 text-orange-900 shadow">
-            <p className="text-lg font-medium">Transactions</p>
-            <p className="text-2xl font-bold">500</p>
-          </div>
-          <div className="flex h-28 flex-col items-center justify-center rounded-lg bg-orange-200 text-orange-900 shadow">
-            <p className="text-lg font-medium">Savings</p>
-            <p className="text-2xl font-bold">10K</p>
-          </div>
-        </div>
+        {/* Yearly Breakdown Section */}
+        <div className="relative bg-gray-100 w-full h-screen p-8">
+          <h1 className="text-2xl font-bold text-gray-800 mb-6">Yearly Breakdown</h1>
 
-        {/* Weekly Activity and Pie Chart */}
-        <div className="grid grid-cols-3 gap-6 pb-6">
-          <div className="col-span-2 rounded-lg bg-white p-4 shadow">
-            <h2 className="pb-4 text-lg font-bold">Weekly Activity</h2>
-            <div className="h-40 bg-gray-200"></div>
-          </div>
-          <div className="rounded-lg bg-white p-4 shadow">
-            <h2 className="pb-4 text-lg font-bold">Yearly Expenses</h2>
-            <div className="h-40 bg-gray-200"></div>
-          </div>
-        </div>
+          <div className="relative grid grid-cols-3 gap-6">
+            {/* Loan Returned */}
+            <LoanReturned />
 
-        {/* Balance History and Card */}
-        <div className="grid grid-cols-3 gap-6">
-          <div className="col-span-2 rounded-lg bg-white p-4 shadow">
-            <h2 className="pb-4 text-lg font-bold">Balance History</h2>
-            <div className="h-40 bg-gray-200"></div>
+            {/* Total Payments */}
+            <TotalPayments />
+
+            {/* Loan Repayments */}
+            <LoanRepayments />
+
+            {/* Card Report */}
+            <CardReport />
           </div>
-          <div className="rounded-lg bg-white p-4 shadow">
-            <h2 className="pb-4 text-lg font-bold">My Card</h2>
-            <div className="flex flex-col items-center">
-              <div className="mb-4 h-24 w-36 bg-orange-300 rounded-lg"></div>
-              <p className="font-medium">Card Holder: Brenda</p>
-              <p>**** **** **** 1234</p>
+
+          {/* Weekly Activity & Pie Chart */}
+          <div className="grid grid-cols-3 gap-6 mb-6 mt-8">
+            {/* Weekly Activity */}
+            <div className="col-span-2 rounded-lg bg-white p-4 shadow">
+              <h2 className="mb-4 text-lg font-bold">Weekly Activity</h2>
+              <div className="h-40 bg-gray-200"></div>
+            </div>
+            {/* Pie Chart */}
+            <div className="rounded-lg bg-white p-4 shadow">
+              <h2 className="mb-4 text-lg font-bold">Yearly Expenses</h2>
+              <div className="h-40 bg-gray-200"></div>
+              <p className="mt-4 text-center text-sm">
+                30% Entertainment, 20% Investments, 15% Bills, 35% Others
+              </p>
+            </div>
+          </div>
+
+          {/* Balance History & Card */}
+          <div className="grid grid-cols-3 gap-6">
+            {/* Balance History */}
+            <div className="col-span-2 rounded-lg bg-white p-4 shadow">
+              <h2 className="mb-4 text-lg font-bold">Balance History</h2>
+              <div className="h-40 bg-gray-200"></div>
+            </div>
+            {/* My Card */}
+            <div className="rounded-lg bg-white p-4 shadow">
+              <h2 className="mb-4 text-lg font-bold">My Card</h2>
+              <div className="flex flex-col items-center">
+                <div className="mb-4 h-24 w-36 rounded-lg bg-orange-300"></div>
+                <p className="text-center font-semibold">Card Holder: Brenda</p>
+                <p className="text-center">**** **** **** 1234</p>
+              </div>
             </div>
           </div>
         </div>
