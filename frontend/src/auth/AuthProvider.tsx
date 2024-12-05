@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react";
-import { login } from "./api/auth";
+import { login } from "../api/auth";
 
 type AuthContext = {
   currentUser?: User | null;

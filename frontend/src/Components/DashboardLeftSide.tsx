@@ -2,16 +2,32 @@ import facebook from "../public/dashboard-images/facebook.png";
 import instagram from "../public/dashboard-images/instagram.png";
 import twitter from "../public/dashboard-images/twitter.png";
 import home from "../public/dashboard-images/home.png";
+import pencil from "../public/dashboard-images/pencil.png";
+import { useAuth } from "../auth/AuthProvider";
+import { useState } from "react";
+import EditUserModal from "./EditUserModal";
 
 const DashboardLeftSide = () => {
+  const [editUserModal, setEditModal] = useState(false);
+  const { currentUser } = useAuth();
+
+  const handleEditUser = () => {
+    setEditModal(true);
+  };
   return (
-    <div className="flex h-[100vh] flex-row">
-      <div className="flex h-full w-[15%] flex-col items-center">
+    <div className="flex h-screen w-[15%] flex-col items-center">
+      {editUserModal && <EditUserModal />}
+      <div className="mt-[9vh] flex h-full flex-col items-center">
         <div
           className="profileImage flex h-[12.5vw] w-[12.5vw] items-end justify-end rounded-full pb-[20%]"
           style={{ backgroundImage: `${null}`, backgroundColor: "white" }}
         >
-          <div className="flex items-center justify-center rounded-full bg-[#1814F3]"></div>
+          <div
+            className="flex h-[3vh] w-[3vh] cursor-pointer items-center justify-center rounded-full bg-[#1814F3]"
+            onClick={handleEditUser}
+          >
+            <img src={pencil} className="h-[50%] w-[50%]" />
+          </div>
         </div>
         <div className="mb-[3vh] mt-[3vh]">
           <p className="font-bold">Iyobor Progressive Union</p>

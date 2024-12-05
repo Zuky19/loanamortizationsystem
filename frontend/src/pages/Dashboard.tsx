@@ -13,11 +13,11 @@ const Dashboard = () => {
   // const [duePayments, setDuePayments] = useState("0");
   // const [totalInterest, setTotalInterest] = useState("0");
   return (
-    <div className="flex flex-1 flex-col bg-[#D9D9D9]">
+    <div className="flex h-screen flex-row overflow-hidden bg-[#D9D9D9]">
       {/* Left Section */}
       <DashboardLeftSide />
       {/* Right Section */}
-      <div className="flex w-[85%] flex-col">
+      <div className="flex h-full w-[85%] flex-col bg-[#D9D9D9]">
         <div className="flex h-[4vh] w-full flex-row justify-end">
           <div className="flex w-[12vw] flex-row justify-between">
             <img src={home} />
@@ -91,7 +91,7 @@ const Dashboard = () => {
         </div>
         {/* Third Row */}
         <div className="mb-[3vh] flex w-full flex-row justify-between pl-[9vw] pr-[12vw]">
-          <div className="flex h-[30vh] w-[25vw] flex-col items-center rounded-[12px] bg-white shadow">
+          <div className="flex h-[30vh] w-[24.5vw] flex-col items-center rounded-[12px] bg-white shadow">
             <div className="relative bottom-[10%] h-[62%] w-[92%] rounded-[8px] bg-[#F58C0AD4]"></div>
             <div>
               <p className="text-[20px] font-bold text-black opacity-[50%]">
@@ -99,7 +99,7 @@ const Dashboard = () => {
               </p>
             </div>
           </div>
-          <div className="flex h-[30vh] w-[25vw] flex-col items-center rounded-[12px] bg-white shadow">
+          <div className="flex h-[30vh] w-[24.5vw] flex-col items-center rounded-[12px] bg-white shadow">
             <div className="relative bottom-[10%] h-[62%] w-[92%] rounded-[8px] bg-[#000000D4]"></div>
             <p className="text-[20px] font-bold text-black opacity-[50%]">
               ₦ Interest Paid

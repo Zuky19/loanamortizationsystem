@@ -1,16 +1,19 @@
-import Calendar from "react-calendar";
+import { Calendar } from "rsuite";
 import AdminNavigation from "../components/AdminNavigation";
 //import { useState } from "react";
 import notification from "../public/TaskManagementDashboard/notificationempty.png";
+import SidebarMenu from "../components/SidebarMenu";
 
 const TaskManagemnetDashboard = () => {
   const currentDate = new Date();
+
   //const [date, setDate] = useState<Date>(currentDate);
 
   return (
     <div className="flex h-[100vh] w-[100vw] flex-row">
       <div className="flex h-[100%] w-[20%] flex-col py-[2.67%] pl-[1.67%] pr-[3.125%]">
-        <AdminNavigation />
+        {/* <AdminNavigation /> */}
+        <SidebarMenu />
       </div>
       <div className="flex h-[100%] w-[80%] flex-col pt-[4.44%]">
         <div className="flex flex-row items-center justify-between">
@@ -41,9 +44,7 @@ const TaskManagemnetDashboard = () => {
             </div>
           </div>
           <div className="flex flex-col">
-            <div>
-              <Calendar value={currentDate} defaultValue={currentDate} />
-            </div>
+            <div className="h-[20%] w-full"></div>
           </div>
         </div>
       </div>
