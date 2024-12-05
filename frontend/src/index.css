@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.forgotpassword {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 35px;
+  line-height: 55px;
+}
+
+.loginbg {
+  background-image: url("./public/loginbg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.poppinsfont {
+  font-family: "Poppins", sans-serif;
+  font-style: italic;
+}
+
+.AdminNavigationDashboard {
+  background-image: linear-gradient(#DE2769, #781539);
+}
+
+.baloobhaifont{
+  font-family: 'Baloo Bahi';
+}
