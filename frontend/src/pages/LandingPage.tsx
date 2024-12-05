@@ -37,11 +37,11 @@ const LandingPage = () => {
         <div className="flex flex-1 flex-row items-end gap-[5vw] pb-[8vh]">
           <div
             className="flex h-[6vh] w-[14vw] cursor-pointer items-center justify-center rounded-[10px] bg-[#F58C0AD4] font-semibold text-white"
-            onClick={() => navigate("/Login")}
+            onClick={() => navigate("/login")}
           >
             Login
           </div>
-          <div className="flex h-[6vh] w-[14vw] cursor-pointer items-center justify-center rounded-[10px] bg-[#F58C0AD4] font-semibold text-white">
+          <div className="flex h-[6vh] w-[14vw] cursor-pointer items-center justify-center rounded-[10px] bg-[#F58C0AD4] bg-[#F58C0A] font-semibold text-white">
             Sign Up
           </div>
         </div>
