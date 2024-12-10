@@ -144,13 +144,13 @@ const AccountSection: React.FC = () => {
             />
           </div>
           <div className="flex flex-row justify-between">
-            <label htmlFor="fullname">Bank Name:</label>
+            <label htmlFor="fullname">Address:</label>
             <input
               type="text"
               placeholder=""
-              value={registrationData.bankname}
+              value={registrationData.address}
               onChange={handleInputChange}
-              name="bankname"
+              name="address"
               className="w-[70%] rounded-[4px] border border-[#F58C0AD4] focus:outline-none"
             />
           </div>

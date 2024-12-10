@@ -10,7 +10,6 @@ interface UserType {
   accountnumber: string;
   bankname: string;
   occupation: string;
-  membershipyear?: string;
   role?: string;
 }
 

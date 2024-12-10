@@ -1,5 +1,11 @@
-import { createContext, PropsWithChildren, useContext, useState } from "react";
-import { login } from "../api/auth";
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { getUser, login } from "../api/auth";
 
 type AuthContext = {
   currentUser?: User | null;
@@ -11,7 +17,7 @@ type AuthContext = {
 };
 
 type User = {
-  full_name: string;
+  fullname: string;
   username: string;
   role: string;
 };
@@ -23,6 +29,18 @@ type AuthProviderProps = PropsWithChildren;
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [currentUser, setCurrentUser] = useState<User | null>();
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const savedUser = localStorage.getItem("currentUser");
+      if (savedUser) {
+        const username = JSON.parse(savedUser).username;
+        setCurrentUser(await getUser(username));
+        console.log("Restored user from localStorage:", JSON.parse(savedUser));
+      }
+    };
+    fetchUser();
+  }, []);
+
   const handleLogin = async (username: string, password: string) => {
     try {
       const response = await login(username, password);
@@ -30,16 +48,19 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       const user = response?.user;
       console.log(response);
       setCurrentUser(user);
+      localStorage.setItem("currentUser", JSON.stringify(user));
       console.log("User: ", response.user);
       return response.user;
     } catch (error) {
       console.error("Login faliled", error);
       setCurrentUser(null);
+      return undefined;
     }
   };
 
   const handleLogout = async () => {
     setCurrentUser(null);
+    localStorage.removeItem("CurrentUser");
   };
   return (
     <AuthContext.Provider

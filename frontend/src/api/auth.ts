@@ -1,4 +1,24 @@
 import axios from "axios";
+import { useAuth } from "../auth/AuthProvider";
+
+type User = {
+  fullname: string;
+  username: string;
+  role: string;
+};
+
+export const getUser = async (user: string) => {
+  try {
+    const response = await axios
+      .get(`http://localhost:4000/api/members/${user}`)
+      .catch((error) => error.response);
+    const { fullname, username, role } = response.data as User;
+    console.log(response.data);
+    return { fullname, username, role };
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const login = async (username: string, password: string) => {
   try {

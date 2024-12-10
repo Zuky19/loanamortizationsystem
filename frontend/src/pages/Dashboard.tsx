@@ -4,14 +4,18 @@ import barchart from "../public/dashboard-images/chart-bar.png";
 import naira from "../public/dashboard-images/naira.png";
 import arrowrefresh from "../public/dashboard-images/Arrow-Refresh.png";
 import home from "../public/dashboard-images/home.png";
-
 import settings from "../public/dashboard-images/settings.png";
 import notification from "../public/dashboard-images/notification.png";
 import DashboardLeftSide from "../components/DashboardLeftSide";
+import useWindowDimensions from "../hooks/windowDimensions";
+import { useAuth } from "../auth/AuthProvider";
 
 const Dashboard = () => {
   // const [duePayments, setDuePayments] = useState("0");
   // const [totalInterest, setTotalInterest] = useState("0");
+  const { currentUser } = useAuth();
+
+  const { height } = useWindowDimensions();
   return (
     <div className="flex h-screen w-screen flex-row overflow-hidden bg-[#D9D9D9]">
       {/* Left Section */}
@@ -26,7 +30,9 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="mb-[6.5vh] flex flex-row items-center pl-[5vw]">
-          <p className="text-[40px] text-[#7B809A]">Welcome Back, Iyobor.</p>
+          <p className="text-[40px] text-[#7B809A]">
+            Welcome Back, {currentUser ? currentUser.fullname : "Iyobor"}.
+          </p>
           <div className="flex pl-[10%] pr-[24%]">
             <input className="flex h-[5vh] w-[15vw] rounded-[5px] border border-[#F58C0A]" />
           </div>
@@ -34,55 +40,157 @@ const Dashboard = () => {
 
         {/* First Row */}
         <div className="mb-[5vh] flex w-full flex-row justify-between pl-[9vw] pr-[12vw]">
-          <div className="flex flex-col rounded-[12px] bg-white shadow">
-            <div className="flex h-[12vh] w-[14.5vw] justify-between">
-              <div className="relative left-[7%] flex h-[50%] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
-                <img src={clock} />
+          {/* Box1 */}
+          <div className="h-[12.2vh] w-[15vw] rounded-[12px] bg-white shadow">
+            <div className="flex h-[50%] w-full flex-row items-center justify-between">
+              <div className="relative left-[7%] flex h-full w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={naira} />
               </div>
-              <div className="flex flex-col items-end pr-[1vw]">
-                <p className="text-[14px] text-[#7B809A]">Due Payments</p>
-                {/* <p className="text-[24px] font-bold">{duePayments}</p> */}
+              <div className="flex flex-col">
+                <p className="text-[2vh] text-[#7B809A]">
+                  Sum of loan amount paid
+                </p>
+                <div className="flex w-full flex-row justify-end pr-[25%]">
+                  <p>0</p>
+                </div>
               </div>
             </div>
             <div className="flex flex-row pl-[6%]">
-              <p>
-                <span className="text-[#F58C0A]">Wells Fargo</span> & 4 others
+              <p className="text-[1.7vh] text-[#7B809A]">
+                <span className="text-[#F58C0A]">total amount </span> paid
+                towards offsetting the loan
               </p>
             </div>
           </div>
-          <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-            <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
-              <img src={barchart} />
+          {/* Box2 */}
+          <div className="h-[12.2vh] w-[15vw] rounded-[12px] bg-white shadow">
+            <div className="flex h-[50%] w-full flex-row items-center justify-between">
+              <div className="relative left-[7%] flex h-full w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={naira} />
+              </div>
+              <div className="flex flex-col">
+                <p className="text-[2vh] text-[#7B809A]">Total amount paid</p>
+                <div className="flex w-full flex-row justify-end pr-[25%]">
+                  <p>0</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row pl-[6%]">
+              <p className="text-[1.7vh] text-[#7B809A]">
+                <span className="text-[#F58C0A]">Sum total </span> paid this
+                month
+              </p>
             </div>
           </div>
-          <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-            <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#F58C0AD4]">
-              <img src={naira} />
+          {/* Box 3 */}
+          <div className="h-[12.2vh] w-[15vw] rounded-[12px] bg-white shadow">
+            <div className="flex h-[50%] w-full flex-row items-center justify-between">
+              <div className="relative left-[7%] flex h-full w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={naira} />
+              </div>
+              <div className="flex flex-col">
+                <p className="text-[2vh] text-[#7B809A]">Interest on Loan</p>
+                <div className="flex w-full flex-row justify-end pr-[25%]">
+                  <p>0</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row pl-[6%]">
+              <p className="text-[1.7vh] text-[#7B809A]">
+                <span className="text-[black]">Monthly </span> paid towards
+                offsetting the loan
+              </p>
             </div>
           </div>
-          <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-            <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#F58C0AD4]">
-              <img src={naira} />
+          {/* Box 4 */}
+          <div className="h-[12.2vh] w-[15vw] rounded-[12px] bg-white shadow">
+            <div className="flex h-[50%] w-full flex-row items-center justify-between">
+              <div className="relative left-[7%] flex h-full w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={naira} />
+              </div>
+              <div className="flex flex-col">
+                <p className="text-[2vh] text-[#7B809A]">Interest on Loan</p>
+                <div className="flex w-full flex-row justify-end pr-[25%]">
+                  <p>0</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row pl-[6%]">
+              <p className="text-[1.7vh] text-[#7B809A]">
+                <span className="text-[black]">Monthly </span> paid towards
+                offsetting the loan
+              </p>
             </div>
           </div>
         </div>
         {/* Second Row */}
         <div className="mb-[4.5vh] flex w-full flex-row justify-between pl-[9vw] pr-[12vw]">
-          <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-            <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
-              <img src={barchart} />
+          {/* Box 1 */}
+          <div className="h-[12.2vh] w-[15vw] rounded-[12px] bg-white shadow">
+            <div className="flex h-[50%] w-full flex-row items-center justify-between">
+              <div className="relative left-[7%] flex h-full w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={naira} />
+              </div>
+              <div className="flex flex-col">
+                <p className="text-[2vh] text-[#7B809A]">Monthly Payment</p>
+                <div className="flex w-full flex-row justify-end pr-[25%]">
+                  <p>20,000</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row pl-[6%]">
+              <p className="text-[1.7vh] text-[#F58C0A]">
+                <span className="text-[black]">Contribution </span> made for the
+                month
+              </p>
             </div>
           </div>
-          <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-            <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
-              <img src={arrowrefresh} />
+          {/* Box 2 */}
+          <div className="h-[12.2vh] w-[15vw] rounded-[12px] bg-white shadow">
+            <div className="flex h-[50%] w-full flex-row items-center justify-between">
+              <div className="relative left-[7%] flex h-full w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={naira} />
+              </div>
+              <div className="flex flex-col">
+                <p className="text-[2vh] text-[#7B809A]">Loan Given</p>
+                <div className="flex w-full flex-row justify-end pr-[25%]">
+                  <p>0</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row pl-[6%]">
+              <p className="text-[1.7vh] text-[#F58C0A]">
+                Loan
+                <span className="text-[#7B809A]">
+                  {" "}
+                  amount granted this month
+                </span>
+              </p>
             </div>
           </div>
-          <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
-            <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#F58C0AD4]">
-              <img src={naira} />
+          {/* Box 3 */}
+          <div className="h-[12.2vh] w-[15vw] rounded-[12px] bg-white shadow">
+            <div className="flex h-[50%] w-full flex-row items-center justify-between">
+              <div className="relative left-[7%] flex h-full w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#3E3D45]">
+                <img src={naira} />
+              </div>
+              <div className="flex flex-col">
+                <p className="text-[2vh] text-[#7B809A]">Loan Given</p>
+                <div className="flex w-full flex-row justify-end pr-[25%]">
+                  <p>0</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row pl-[6%]">
+              <p className="text-[1.7vh] font-bold text-[black]">
+                Loan Returned{" "}
+                <span className="font-normal text-[#7B809A]">
+                  amount towards loan owned
+                </span>
+              </p>
             </div>
           </div>
+          {/* Box 4 */}
           <div className="h-[12vh] w-[14.5vw] rounded-[12px] bg-white shadow">
             <div className="relative left-[7%] flex h-[6.25vh] w-[6.25vh] translate-y-[-20%] items-center justify-center rounded-[12px] bg-[#F58C0AD4]">
               <img src={barchart} />
