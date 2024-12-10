@@ -13,9 +13,9 @@ import dotenv from "dotenv";
 
 const app = express();
 const port = 4000;
-dotenv.config({});
-app.use(json());
+
 app.use(cors());
+app.use(json());
 
 app.use("/api/members", memberRoutes);
 app.use("/api/loans", loanRoutes);
@@ -25,7 +25,7 @@ app.use("/api/parameters", monthlyParameterRoutes);
 app.use("/api/cross", crossModelRoutes);
 app.use("/api/repayments", loanRepaymentRoutes);
 app.use("/api/auth", authRoutes);
-
+dotenv.config({});
 console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
 app.get("/", (req, res) => {

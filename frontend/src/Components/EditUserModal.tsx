@@ -78,21 +78,15 @@ const EditUserModal = () => {
               </div>
             </div>
           </div>
-          <div className="mb-[7.25%] flex w-full flex-row justify-center">
-            <label htmlFor="membershipyear">Membership Year</label>
-            <input
-              name="membershipyear"
-              onChange={(e) => handleInputChange(e)}
-            />
-          </div>
-          <div className="flex flex-row justify-between px-[2%]">
-            <div className="flex flex-row items-center justify-center">
+
+          <div className="flex h-[6.2vh] flex-row justify-between px-[2%] text-white">
+            <div className="flex w-[19.7%] cursor-pointer flex-row items-center justify-center rounded-3xl bg-[#F58C0A]">
               <p>Save Changes</p>
             </div>
-            <div className="flex flex-row items-center justify-center">
+            <div className="flex w-[19.7%] cursor-pointer flex-row items-center justify-center rounded-3xl bg-[#F58C0A]">
               <p>View Details</p>
             </div>
-            <div className="flex flex-row items-center justify-center">
+            <div className="flex w-[19.7%] cursor-pointer flex-row items-center justify-center rounded-3xl bg-[#F58C0A]">
               <p>Discard</p>
             </div>
           </div>

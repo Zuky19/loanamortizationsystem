@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useAuth } from "../auth/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import backarrow from "../public/backarrow.svg";
 
 interface loginType {
   username: string;
@@ -36,7 +37,7 @@ const LoginRightSide = ({
           return;
         }
         if (user && user.role === "user") {
-          navigate("/dashboard");
+          navigate("/home");
           return;
         }
       }
@@ -79,6 +80,15 @@ const LoginRightSide = ({
   return (
     <div className="flex h-full w-[50%] flex-col items-center justify-center">
       <div>
+        <div className="flex w-full cursor-pointer flex-row justify-start">
+          <img
+            src={backarrow}
+            alt="backarrow"
+            height={20}
+            width={20}
+            onClick={() => navigate("/home")}
+          />
+        </div>
         <div className="flex w-full flex-row items-center justify-center pb-[7vh]">
           <p className="text-[45px] font-bold text-black">Login</p>
         </div>

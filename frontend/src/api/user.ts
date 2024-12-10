@@ -10,6 +10,7 @@ interface UserType {
   accountnumber: string;
   bankname: string;
   occupation: string;
+  role?: string;
 }
 
 export const registerUser = async ({
@@ -23,15 +24,40 @@ export const registerUser = async ({
   bankname,
   occupation,
 }: UserType) => {
-  const post = await axios.post("http:localhost:4000/api/members", {
-    fullname,
-    address,
-    username,
-    email,
-    phone,
-    password,
-    accountnumber,
-    bankname,
-    occupation,
-  });
+  try {
+    const response = await axios.post("http://localhost:4000/api/members", {
+      fullname,
+      address,
+      username,
+      email,
+      phone,
+      password,
+      accountnumber,
+      bankname,
+      occupation,
+      membershipyear: "2024",
+      role: "user",
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+
+    if (axios.isAxiosError(error)) {
+      // API responded with an error status
+      if (error.response) {
+        return {
+          status: error.response.status,
+          message: error.response.data?.message || "Login failed",
+        };
+      }
+
+      // No response from the server
+      if (error.request) {
+        return {
+          status: 503,
+          message: "Service unavailable. Please try again later.",
+        };
+      }
+    }
+  }
 };
