@@ -1,14 +1,31 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
+import { v4 as uuidv4 } from "uuid"; // Install with: npm install uuid
 
-const contributionSchema = new Schema(
+const contributionSchema = new mongoose.Schema(
   {
-    contribution_id: { type: String, required: true, unique: true },
-    member_id: { type: String, required: true, ref: "Member" },
-    month: { type: String, required: true },
-    year: { type: Number, required: true },
+    contribution_id: {
+      type: String,
+      default: uuidv4,
+      required: true,
+      unique: true,
+    }, // Auto-generate ID
+    member_id: { type: String, required: true },
     amount: { type: Number, required: true },
+    date: { type: Date, required: true },
+    year: {
+      type: Number,
+      required: true,
+      default: () => new Date().getFullYear(),
+    }, // Default to current year
+    month: {
+      type: Number,
+      required: true,
+      default: () => new Date().getMonth() + 1,
+    }, // Default to current month (0-indexed)
   },
   { timestamps: true }
 );
 
-export default model("Contribution", contributionSchema);
+const Contribution = mongoose.model("Contribution", contributionSchema);
+
+export default Contribution;
