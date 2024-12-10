@@ -2,16 +2,17 @@ import PageContainer from "./PageContainer";
 import ToggleSwitch from "./ToggleSwitch";
 import editUserIcon from "../assets/edituser.svg";
 import exportIcon from "../assets/export.svg";
-import loanDetailsIcon from "../assets/loandetails.svg";
-import notifyIcon from "../assets/notify.svg";
 import { useState, useRef } from "react";
 import CustomScrollbar from "../components/CustomScrollbar";
-import membersImage from "../assets/members.svg";
+import analysisIcon from "../assets/Viewanalysis.svg"
+import statisticsIcon from "../assets/statistics.svg";
+import $Icon from "../assets/$.svg";
 
-export function AdminDashboard() {
+export function SmartHome() {
     const [switchStates, setSwitchStates] = useState([false, false, false, false]);
     const tableRef = useRef<HTMLDivElement>(null);
-    const icons = [exportIcon, notifyIcon, loanDetailsIcon, editUserIcon];
+    const icons = [exportIcon, analysisIcon, editUserIcon];
+
     const toggleSwitch = (index: number) => {
         setSwitchStates((prevStates) =>
             prevStates.map((state, i) => (i === index ? !state : state))
@@ -19,14 +20,49 @@ export function AdminDashboard() {
     };
 
     return (
-        <PageContainer title="Iyobor membership breakdown">
+        <PageContainer title="Iyobor membership breakdown" sidebarType="menu2">
             {/* Action Buttons */}
 
+            {/* White Space Container */}
+            <div
+                className="absolute bg-white shadow-md w-[calc(40vw)] max-w-[1059.58px] h-[calc(40vh)] max-h-[603.33px] flex flex-col items-center justify-center top-[15%] left-[10%] rounded-[12px]"
+                style={{
+                    gap: "0px",
+                    transform: "matrix(1, -0.01, 0.01, 1, 0, 0)",
+                    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.25)",
+                }}
+            >
+                {/* 3x3 Grid */}
+                <div className="grid grid-cols-3 gap-5 px-5">
+                    {[...Array(6)].map((_, index) => (
+                        <div
+                            key={index}
+                            className="w-[calc(30%)] max-w-[100px] h-[calc(30%)] max-h-[100px] bg-white shadow-md flex items-center justify-center rounded-[10px]"
+                        >
+                            <img
+                                src={$Icon}
+                                alt="Placeholder"
+                                className="w-[60px] h-[60px] object-contain"
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+
+            {/* Overlapping Statistics Image */}
+            <img
+                src={statisticsIcon}
+                alt="Statistics"
+                className="absolute w-[333px] h-[166.97px] top-[-20%] left-[60px]"
+                style={{ zIndex: 1 }}
+            />
+
+            {/* white space bubble */}
             <div className="absolute flex gap-3 left-[310px] top-[575px]">
                 {[
                     "EXPORT BREAKDOWN",
-                    "NOTIFY USERS OF LOAN",
-                    "Create New loan details",
+                    "VIEW ANALYSIS",
                     "EDIT USER",
                 ].map((title, index) => (
                     <div
@@ -75,17 +111,10 @@ export function AdminDashboard() {
                     </span>
                 </button>
                 <div>
-                    {/* memebers Image */}
-                    <div
-                        className="absolute top-[-710px] left-[-10px] -translate-x-1/2"
-                        style={{ zIndex: 1 }}
-                    >
-                        <img src={membersImage} alt="Members" className="w-[399.25px] h-[399.25px]" />
-                    </div>
 
-                    {/* Table Section */}
+                    {/* Table Container */}
                     <div
-                        className="absolute top-[-490px] left-1/2 transform -translate-x-1/2 w-[1000px] h-[470px] bg-white rounded-[20px] shadow-md p-0"
+                        className="absolute bg-white shadow-md rounded-[20px] w-[600px] h-[300px] top-[-150%] left-[-73%]"
                         style={{ zIndex: 0 }}
                     >
                         {/* Table Header */}
@@ -94,19 +123,19 @@ export function AdminDashboard() {
                             <div className="text-center">Members</div>
                             <div className="text-center">Phone</div>
                             <div className="text-center">Bank Name</div>
-                            <div className="text-center ">Account Number</div>
-                            <div className="text-center ">Membership Year</div>
-                            <div className="text-center ">Job</div>
+                            <div className="text-center">Account Number</div>
+                            <div className="text-center">Membership Year</div>
+                            <div className="text-center">Job</div>
                             <div className="text-center">Address</div>
                             <div className="text-center"></div>
                         </div>
 
                         {/* Table Rows */}
-                        <div className="relative overflow-hidden h-[347px] custom-scroll" ref={tableRef}>
+                        <div className="relative overflow-hidden h-[80%] custom-scroll" ref={tableRef}>
                             {[1, 2, 3, 4, 5].map((row, index) => (
                                 <div
                                     key={row}
-                                    className={`grid grid-cols-9 gap-3 items-center text-left text-gray-600 font-inter text-[12px] py-4 border-b border-[#FFC24C] ${index === 4 ? 'border-b-0' : ''
+                                    className={`grid grid-cols-9 gap-3 items-center text-left text-gray-600 font-inter text-[12px] py-4 border-b border-[#FFC24C] ${index === 4 ? "border-b-0" : ""
                                         }`}
                                 >
                                     <div className="text-center">{row}</div>
@@ -124,11 +153,13 @@ export function AdminDashboard() {
                         {/* Custom Scrollbar */}
                         <CustomScrollbar tableRef={tableRef} />
                     </div>
+
                 </div>
             </div>
+
         </PageContainer>
 
     );
 };
 
-export default AdminDashboard;
+export default SmartHome;

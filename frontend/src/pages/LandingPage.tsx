@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../public/logo.png";
-import frcimage from "../public/wave.png";
+import logo from "../assets/logo.png";
+import frcimage from "../assets/wave.png";
 import useWindowDimensions from "../hooks/windowDimensions";
 import { useNavigate } from "react-router-dom";
 

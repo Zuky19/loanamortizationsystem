@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import clock from "../public/dashboard-images/clock.png";
-import barchart from "../public/dashboard-images/chart-bar.png";
-import naira from "../public/dashboard-images/naira.png";
-import arrowrefresh from "../public/dashboard-images/Arrow-Refresh.png";
-import home from "../public/dashboard-images/home.png";
-import facebook from "../public/dashboard-images/facebook.png";
-import instagram from "../public/dashboard-images/instagram.png";
-import twitter from "../public/dashboard-images/twitter.png";
-import settings from "../public/dashboard-images/settings.png";
-import notification from "../public/dashboard-images/notification.png";
+import clock from "../assets/dashboard-images/clock.png";
+import barchart from "../assets/dashboard-images/chart-bar.png";
+import naira from "../assets/dashboard-images/naira.png";
+import arrowrefresh from "../assets/dashboard-images/Arrow-Refresh.png";
+import home from "../assets/dashboard-images/home.png";
+import facebook from "../assets/dashboard-images/facebook.png";
+import instagram from "../assets/dashboard-images/instagram.png";
+import twitter from "../assets/dashboard-images/twitter.png";
+import settings from "../assets/dashboard-images/settings.png";
+import notification from "../assets/dashboard-images/notification.png";
 
 const Dashboard = () => {
   const [duePayments, setDuePayments] = useState("0");
@@ -40,7 +40,7 @@ const Dashboard = () => {
           </div>
           <div
             className="mx-[1.5vw] mb-[7.5%] flex h-[6%] w-[12vw] cursor-pointer items-center justify-center bg-[#4F4F52D4]"
-            onClick={() => {}}
+            onClick={() => { }}
           >
             <p className="text-[14px] font-bold text-white">
               View Yearly Breakdown
@@ -48,7 +48,7 @@ const Dashboard = () => {
           </div>
           <div
             className="flex h-[6%] w-[12vw] cursor-pointer items-center justify-center bg-[#F58C0AD4]"
-            onClick={() => {}}
+            onClick={() => { }}
           >
             <p className="font-bold">Log Out</p>
           </div>
@@ -148,20 +148,20 @@ const Dashboard = () => {
             <div className="flex h-full flex-row justify-between gap-[1.5vw]">
               <div
                 className="flex h-full w-[11vw] cursor-pointer items-center justify-center rounded bg-[#F58C0AD4] text-[14px] text-white"
-                onClick={() => {}}
+                onClick={() => { }}
               >
                 See Previous Loans
               </div>
               <div
                 className="flex w-[11vw] cursor-pointer items-center justify-center rounded bg-[#4F4F52D4] text-[14px] text-white"
-                onClick={() => {}}
+                onClick={() => { }}
               >
                 View Yearly Breakdown
               </div>
             </div>
             <div
               className="flex w-[11vw] cursor-pointer items-center justify-center rounded bg-[#F58C0AD4] text-[14px] text-white"
-              onClick={() => {}}
+              onClick={() => { }}
             >
               Print Summary
             </div>

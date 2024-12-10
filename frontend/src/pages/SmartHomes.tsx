@@ -1,12 +1,20 @@
-import PageContainer from "./PageContainer";
+import SidebarMenu from "../components/SidebarMenu";
+import UserIcon from "../assets/user.svg";
+import NotificationsIcon from "../assets/notifications.svg";
+import SettingsIcon from "../assets/settings.svg";
+import HomeIcon from "../assets/home2.svg";
+import MoreIcon from "../assets/more.svg";
+import notifBadge from "../assets/notifbadge.svg";
+import { useState } from "react";
 import ToggleSwitch from "./ToggleSwitch";
+import membersImage from "../assets/members.svg";
+import CustomScrollbar from '../components/CustomScrollbar';
+import { useRef } from "react";
 import editUserIcon from "../assets/edituser.svg";
 import exportIcon from "../assets/export.svg";
 import loanDetailsIcon from "../assets/loandetails.svg";
 import notifyIcon from "../assets/notify.svg";
-import { useState, useRef } from "react";
-import CustomScrollbar from "../components/CustomScrollbar";
-import membersImage from "../assets/members.svg";
+
 
 export function AdminDashboard() {
     const [switchStates, setSwitchStates] = useState([false, false, false, false]);
@@ -19,10 +27,74 @@ export function AdminDashboard() {
     };
 
     return (
-        <PageContainer title="Iyobor membership breakdown">
-            {/* Action Buttons */}
+        <div className="relative w-screen h-screen bg-[#D2D0CF] overflow-hidden">
+            {/* Sidebar */}
+            <SidebarMenu />
 
-            <div className="absolute flex gap-3 left-[310px] top-[575px]">
+            {/* Menu Header */}
+            <div className="absolute w-[1255px] h-[42px] left-[311px] top-[20px] flex items-center justify-between">
+                {/* Breadcrumb */}
+                <div className="flex flex-col">
+                    {/* Icons and /Pages */}
+                    <div className="flex items-center gap-2 text-gray-700 text-sm font-medium">
+                        {/* Home Icon */}
+                        <img src={HomeIcon} alt="Home Icon" className="w-[13px] h-[13px]" />
+                        {/* /Pages */}
+                        <span className="text-gray-400 text-[13px]">/ Pages /</span>
+
+                        {/* More Icon */}
+                        <img
+                            src={MoreIcon}
+                            alt="More Icon"
+                            className="ml-[130px] w-[16px] h-[16px] mt-9 "
+                        />
+                    </div>
+
+                    {/* Iyabor membership breakdown */}
+                    <div className="absolute h-[44px] left-0 right-[81.91%] top-[32px] font-roboto font-bold text-[13px] leading-[140%] text-[#344767]">
+                        Iyobor membership breakdown
+                    </div>
+                </div>
+
+                {/* Search and Icons */}
+                <div className="flex items-center gap-4">
+                    {/* Search Bar */}
+                    <input
+                        type="text"
+                        placeholder="Search here"
+                        className="absolute w-[173px] h-[42px] left-[757px] top-2 text-sm border border-gray-400 rounded-lg px-3 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-transparent"
+                    />
+
+                    {/* Icons */}
+                    <div className="flex items-center gap-4 mt-4 mr-[200px]">
+                        {/* User Icon */}
+                        <div className="relative group w-[24px] h-[24px] flex items-center justify-center">
+                            <div className="absolute inset-0 rounded-full bg-gray-200 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <img src={UserIcon} alt="User Icon" className="w-[16px] h-[16px] z-10" />
+                        </div>
+
+                        {/* Settings Icon */}
+                        <div className="relative group w-[24px] h-[24px] flex items-center justify-center">
+                            <div className="absolute inset-0 rounded-full bg-gray-200 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <img src={SettingsIcon} alt="Settings Icon" className="w-[16px] h-[16px] z-10" />
+                        </div>
+
+                        {/* Notification Badge */}
+                        <div className="relative group w-[24px] h-[24px] flex items-center justify-center">
+                            <div className="absolute inset-0 rounded-full bg-gray-200 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <img src={NotificationsIcon} alt="Notifications Icon" className="w-[16px] h-[16px] z-10" />
+                            <img
+                                src={notifBadge}
+                                alt="Notification Badge"
+                                className="absolute -top-2 -right-2 w-[16px] h-[16px] z-20"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div className="absolute flex gap-3 left-[600px] top-[650px]">
                 {[
                     "EXPORT BREAKDOWN",
                     "NOTIFY USERS OF LOAN",
@@ -117,6 +189,20 @@ export function AdminDashboard() {
                                     <div className="text-center text-[#FE5C73]">-$2,500</div>
                                     <div className="text-center"></div>
                                     <div className="text-center"></div>
+
+                                    {/* Action Column with Download Button */}
+                                    <div className="flex justify-center items-center ml-[-50px]">
+                                        <button
+                                            className="w-[90px] h-[50px] rounded-[50px] border border-[#123288] text-[#123288] text-[10px] font-medium"
+                                            style={{
+                                                borderRadius: '50px',
+                                                padding: '0.5rem',
+                                                textOverflow: 'ellipsis',
+                                            }}
+                                        >
+                                            Download
+                                        </button>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -126,7 +212,7 @@ export function AdminDashboard() {
                     </div>
                 </div>
             </div>
-        </PageContainer>
+        </div>
 
     );
 };

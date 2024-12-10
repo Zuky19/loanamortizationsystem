@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../public/logo.png";
+import logo from "../assets/logo.png";
 import useWindowDimensions from "../hooks/windowDimensions";
 
 const AdminNavigation = () => {

@@ -1,7 +1,7 @@
 import Calendar from "react-calendar";
 import AdminNavigation from "../components/AdminNavigation";
 import { useState } from "react";
-import notification from "../public/TaskManagementDashboard/notificationempty.png";
+import notification from "../assets/TaskManagementDashboard/notificationempty.png";
 
 const TaskManagemnetDashboard = () => {
   const currentDate = new Date();
