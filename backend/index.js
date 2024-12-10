@@ -7,8 +7,8 @@ import loanRoutes from "./routes/loanRoutes.js";
 const app = express();
 const port = 4000;
 
-app.use(json());
 app.use(cors());
+app.use(json());
 
 app.use("/api/members", memberRoutes);
 app.use("/api/loans", loanRoutes);

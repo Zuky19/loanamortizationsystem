@@ -6,11 +6,17 @@ import pencil from "../public/dashboard-images/pencil.png";
 import { useAuth } from "../auth/AuthProvider";
 import { useState } from "react";
 import EditUserModal from "./EditUserModal";
+import { useNavigate } from "react-router-dom";
 
 const DashboardLeftSide = () => {
   const [editUserModal, setEditModal] = useState(false);
-  const { currentUser } = useAuth();
+  const { currentUser, handleLogout } = useAuth();
+  const navigate = useNavigate();
 
+  const onLogout = () => {
+    handleLogout();
+    navigate("/login");
+  };
   const handleEditUser = () => {
     setEditModal(true);
   };
@@ -54,7 +60,7 @@ const DashboardLeftSide = () => {
         </div>
         <div
           className="flex h-[6%] w-[12vw] cursor-pointer items-center justify-center bg-[#F58C0AD4]"
-          onClick={() => {}}
+          onClick={onLogout}
         >
           <p className="font-bold">Log Out</p>
         </div>

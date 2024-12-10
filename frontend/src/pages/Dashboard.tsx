@@ -13,7 +13,7 @@ const Dashboard = () => {
   // const [duePayments, setDuePayments] = useState("0");
   // const [totalInterest, setTotalInterest] = useState("0");
   return (
-    <div className="flex h-screen flex-row overflow-hidden bg-[#D9D9D9]">
+    <div className="flex h-screen w-screen flex-row overflow-hidden bg-[#D9D9D9]">
       {/* Left Section */}
       <DashboardLeftSide />
       {/* Right Section */}
