@@ -12,9 +12,9 @@ export const getUser = async (user: string) => {
     const response = await axios
       .get(`http://localhost:4000/api/members/${user}`)
       .catch((error) => error.response);
-    const { fullname, username, role } = response.data as User;
+    const data = response.data;
     console.log(response.data);
-    return { fullname, username, role };
+    return data;
   } catch (error) {
     console.error(error);
   }

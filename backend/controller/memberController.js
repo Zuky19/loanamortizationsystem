@@ -123,11 +123,11 @@ export const getMemberByUsername = async (req, res) => {
 // Update a member by ID
 export const updateMember = async (req, res) => {
   try {
-    const updatedMember = await Member.findByIdAndUpdate(
-      req.params.id,
+    const updatedMember = await Member.findOneAndUpdate(
+      { username: req.params.username }, // Match by username
       req.body,
       {
-        new: true,
+        new: true, // Return the updated document
       }
     );
     if (!updatedMember)

@@ -22,7 +22,12 @@ const DashboardLeftSide = () => {
   };
   return (
     <div className="flex h-screen w-[15%] flex-col items-center">
-      {editUserModal && <EditUserModal />}
+      {editUserModal && (
+        <EditUserModal
+          user={currentUser?.username}
+          setEditModal={setEditModal}
+        />
+      )}
       <div className="mt-[9vh] flex h-full flex-col items-center">
         <div
           className="profileImage flex h-[12.5vw] w-[12.5vw] items-end justify-end rounded-full pb-[20%]"
@@ -38,7 +43,12 @@ const DashboardLeftSide = () => {
         <div className="mb-[3vh] mt-[3vh]">
           <p className="font-bold">Iyobor Progressive Union</p>
         </div>
-        <div className="mb-[8vh] flex w-full flex-row justify-between px-[20%]">
+        <div
+          className="mb-[8vh] flex w-full cursor-pointer flex-row justify-between px-[20%]"
+          onClick={() => {
+            navigate("/dashboard");
+          }}
+        >
           <img src={home} />
           <p className="text-[#F58C0A]">Dashboard</p>
         </div>
@@ -52,7 +62,9 @@ const DashboardLeftSide = () => {
         </div>
         <div
           className="mx-[1.5vw] mb-[7.5%] flex h-[6%] w-[12vw] cursor-pointer items-center justify-center bg-[#4F4F52D4]"
-          onClick={() => {}}
+          onClick={() => {
+            navigate("/yearly");
+          }}
         >
           <p className="text-[14px] font-bold text-white">
             View Yearly Breakdown

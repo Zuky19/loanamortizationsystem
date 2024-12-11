@@ -4,7 +4,7 @@ import BackArrow from "../assets/arrow_back.svg";
 import { registerUser } from "../api/user";
 import { useNavigate } from "react-router-dom";
 
-const AccountSection: React.FC = () => {
+const SignUp: React.FC = () => {
   const naviagte = useNavigate();
   const [registrationData, setRegistrationData] = useState({
     fullname: "",
@@ -20,12 +20,13 @@ const AccountSection: React.FC = () => {
   });
 
   const handleSubmit = async () => {
+    console.log(registrationData);
     try {
       setRegistrationData((prev) => ({
         ...prev,
-        membershipyear: getYear().toString(),
+        membershipyear: getYear(),
       }));
-      const post = await registerUser(registrationData);
+      const post = await registerUser({ ...registrationData });
       console.log(post);
       if (post?.status === 201) {
         alert("User Created Successfully");
@@ -38,7 +39,7 @@ const AccountSection: React.FC = () => {
 
   const getYear = () => {
     const date = new Date();
-    return date.getFullYear;
+    return String(date.getFullYear());
   };
 
   const [retypePassword, setRetypePassword] = useState<string>("");
@@ -71,7 +72,7 @@ const AccountSection: React.FC = () => {
               type="text"
               placeholder=""
               value={registrationData.fullname}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e)}
               name="fullname"
               className="w-[70%] rounded-[4px] border border-[#F58C0AD4] focus:outline-none"
             />
@@ -82,7 +83,7 @@ const AccountSection: React.FC = () => {
               type="text"
               placeholder=""
               value={registrationData.username}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e)}
               name="username"
               className="w-[70%] rounded-[4px] border border-[#F58C0AD4] focus:outline-none"
             />
@@ -93,7 +94,7 @@ const AccountSection: React.FC = () => {
               type="text"
               placeholder=""
               value={registrationData.email}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e)}
               name="email"
               className="w-[70%] rounded-[4px] border border-[#F58C0AD4] focus:outline-none"
             />
@@ -105,7 +106,7 @@ const AccountSection: React.FC = () => {
               placeholder=""
               max={9999999999}
               value={registrationData.phone}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e)}
               name="phone"
               className="w-[70%] rounded-[4px] border border-[#F58C0AD4] focus:outline-none"
             />
@@ -116,7 +117,7 @@ const AccountSection: React.FC = () => {
               type="password"
               placeholder=""
               value={registrationData.password}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e)}
               name="password"
               className="w-[70%] rounded-[4px] border border-[#F58C0AD4] focus:outline-none"
             />
@@ -135,12 +136,16 @@ const AccountSection: React.FC = () => {
           <div className="flex flex-row justify-between">
             <label htmlFor="accountnumber">Account Number:</label>
             <input
-              type="text"
+              type="tel"
+              pattern="[0-9]{11}"
               placeholder=""
               value={registrationData.accountnumber}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e)}
               name="accountnumber"
               className="w-[70%] rounded-[4px] border border-[#F58C0AD4] focus:outline-none"
+              max={9999999999}
+              minLength={10}
+              maxLength={11}
             />
           </div>
           <div className="flex flex-row justify-between">
@@ -149,8 +154,19 @@ const AccountSection: React.FC = () => {
               type="text"
               placeholder=""
               value={registrationData.address}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e)}
               name="address"
+              className="w-[70%] rounded-[4px] border border-[#F58C0AD4] focus:outline-none"
+            />
+          </div>
+          <div className="flex flex-row justify-between">
+            <label htmlFor="fullname">Bank Name:</label>
+            <input
+              type="text"
+              placeholder=""
+              value={registrationData.bankname}
+              onChange={(e) => handleInputChange(e)}
+              name="bankname"
               className="w-[70%] rounded-[4px] border border-[#F58C0AD4] focus:outline-none"
             />
           </div>
@@ -160,7 +176,7 @@ const AccountSection: React.FC = () => {
               type="text"
               placeholder=""
               value={registrationData.occupation}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e)}
               name="occupation"
               className="w-[70%] rounded-[4px] border border-[#F58C0AD4] focus:outline-none"
             />
@@ -169,11 +185,11 @@ const AccountSection: React.FC = () => {
       </div>
       <div className="flex h-[3.6vh] flex-row justify-end pr-[7.7vw]">
         <div className="flex h-full flex-row">
-          <div className="flex h-full w-[6vw] items-center justify-center">
+          <div className="flex h-full w-[6vw] cursor-pointer items-center justify-center">
             <p className="font-extrabold text-[#393D42]">Login</p>
           </div>
           <div
-            className="flex h-full w-[6vw] items-center justify-center rounded bg-[#F58C0AD4] text-white"
+            className="flex h-full w-[6vw] cursor-pointer items-center justify-center rounded bg-[#F58C0AD4] text-white"
             onClick={handleSubmit}
           >
             <p>Sign Up</p>
@@ -184,4 +200,4 @@ const AccountSection: React.FC = () => {
   );
 };
 
-export default AccountSection;
+export default SignUp;

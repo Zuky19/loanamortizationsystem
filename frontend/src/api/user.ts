@@ -10,7 +10,17 @@ interface UserType {
   accountnumber: string;
   bankname: string;
   occupation: string;
+  membershipyear: string;
   role?: string;
+}
+interface UpdateUserType {
+  fullname: string;
+  address: string;
+  username: string;
+  phone: string;
+  accountnumber: string;
+  bankname: string;
+  occupation: string;
 }
 
 export const registerUser = async ({
@@ -23,21 +33,24 @@ export const registerUser = async ({
   accountnumber,
   bankname,
   occupation,
+  membershipyear,
 }: UserType) => {
   try {
-    const response = await axios.post("http://localhost:4000/api/members", {
-      fullname,
-      address,
-      username,
-      email,
-      phone,
-      password,
-      accountnumber,
-      bankname,
-      occupation,
-      membershipyear: "2024",
-      role: "user",
-    });
+    const response = await axios
+      .post("http://localhost:4000/api/members", {
+        fullname,
+        address,
+        username,
+        email,
+        phone,
+        password,
+        accountnumber,
+        bankname,
+        occupation,
+        membershipyear,
+        role: "user",
+      })
+      .catch((error) => console.error(error));
     return response;
   } catch (error) {
     console.error(error);
@@ -59,5 +72,22 @@ export const registerUser = async ({
         };
       }
     }
+  }
+};
+
+export const updateUser = async (user: UserType) => {
+  try {
+    const response = await axios
+      .put(`http://localhost:4000/api/members/${user.username}`, user)
+      .catch((error) => {
+        console.error(error);
+      });
+    if (response && response.status === 200) {
+      return response.data;
+    } else {
+      console.error("Unexpected error:", response);
+    }
+  } catch (error) {
+    console.error("Error updating user:", error);
   }
 };

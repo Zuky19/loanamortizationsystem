@@ -41,7 +41,12 @@ const LandingPage = () => {
           >
             Login
           </div>
-          <div className="flex h-[6vh] w-[14vw] cursor-pointer items-center justify-center rounded-[10px] bg-[#F58C0AD4] bg-[#F58C0A] font-semibold text-white">
+          <div
+            className="flex h-[6vh] w-[14vw] cursor-pointer items-center justify-center rounded-[10px] bg-[#F58C0AD4] bg-[#F58C0A] font-semibold text-white"
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
             Sign Up
           </div>
         </div>

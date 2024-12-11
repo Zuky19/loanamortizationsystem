@@ -19,7 +19,7 @@ router.get("/", getAllMembers);
 router.get("/:username", getMemberByUsername);
 
 // Member update route
-router.put("/:id", updateMember); // Update a member by ID
+router.put("/:username", updateMember); // Update a member by ID
 // Member deletion route
 router.delete("/:id", deleteMember); // Delete a member by ID
 
