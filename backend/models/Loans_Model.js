@@ -1,9 +1,8 @@
-import mongoose from "mongoose";
-import { v4 as uuidv4 } from "uuid"; // Install: npm install uuid
+import { Schema, model } from "mongoose";
 
-const loanSchema = new mongoose.Schema(
+const loanSchema = new Schema(
   {
-    loan_id: { type: String, default: uuidv4, required: true, unique: true },
+    loan_id: { type: String, required: true, unique: true },
     member_id: { type: String, required: true },
     loan_amount: { type: Number, required: true },
     interest_rate: { type: Number, required: true },
@@ -16,6 +15,4 @@ const loanSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Loan = mongoose.model("Loan", loanSchema);
-
-export default Loan;
+export default model("Loan", loanSchema);

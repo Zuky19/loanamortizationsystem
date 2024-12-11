@@ -1,4 +1,4 @@
-import Loan from "../models/Loans_Model.js"; // Ensure correct model path
+import Loan from "../models/Loans_Model.js";
 
 // Create a new loan application
 export const applyForLoan = async (req, res) => {
@@ -16,21 +16,37 @@ export const applyForLoan = async (req, res) => {
       return res.status(400).json({ message: "All fields are required." });
     }
 
+    // Find the highest existing loan_id
+    const lastLoan = await Loan.findOne().sort({ loan_id: -1 }).exec();
+    const lastLoanId = lastLoan ? parseInt(lastLoan.loan_id.substring(1)) : 0;
+
+    // Generate the next loan_id
+    const loan_id = `L${(lastLoanId + 1).toString().padStart(4, "0")}`;
+
+    // Create the loan
     const newLoan = await Loan.create({
+      loan_id,
       member_id,
       loan_amount,
       interest_rate,
       duration_months,
       purpose,
-      status: "pending", // Default status for new loans
+      outstanding_balance: loan_amount, // Initialize outstanding balance
+      status: "pending",
     });
 
     res.status(201).json(newLoan);
   } catch (error) {
+    if (error.code === 11000) {
+      // Handle duplicate key error
+      return res.status(400).json({
+        message: "A loan with this ID already exists. Please try again.",
+      });
+    }
+    console.error("Error creating loan:", error);
     res.status(500).json({ message: error.message });
   }
 };
-
 // Get loan by ID
 export const getLoanById = async (req, res) => {
   try {
@@ -40,6 +56,7 @@ export const getLoanById = async (req, res) => {
     }
     res.status(200).json(loan);
   } catch (error) {
+    console.error("Error fetching loan:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -51,6 +68,7 @@ export const getLoansByMember = async (req, res) => {
     const loans = await Loan.find({ member_id });
     res.status(200).json(loans);
   } catch (error) {
+    console.error("Error fetching loans for member:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -71,6 +89,7 @@ export const updateLoanStatus = async (req, res) => {
 
     res.status(200).json(loan);
   } catch (error) {
+    console.error("Error updating loan status:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -84,17 +103,22 @@ export const calculateRepaymentSchedule = async (req, res) => {
     }
 
     const { loan_amount, interest_rate, duration_months } = loan;
-    const monthly_interest = (loan_amount * (interest_rate / 100)) / 12;
-    const total_payment = loan_amount + monthly_interest * duration_months;
-    const monthly_payment = total_payment / duration_months;
+    const monthly_rate = interest_rate / 100 / 12;
+    const emi =
+      (loan_amount *
+        monthly_rate *
+        Math.pow(1 + monthly_rate, duration_months)) /
+      (Math.pow(1 + monthly_rate, duration_months) - 1);
+    const total_payment = emi * duration_months;
 
     res.status(200).json({
       loan_id: loan._id,
       total_payment,
-      monthly_payment,
+      monthly_payment: emi,
       duration_months,
     });
   } catch (error) {
+    console.error("Error calculating repayment schedule:", error);
     res.status(500).json({ message: error.message });
   }
 };
