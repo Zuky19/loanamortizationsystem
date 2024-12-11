@@ -41,19 +41,12 @@ jobs:
 
     steps:
       - name: Check out code
-<<<<<<< HEAD
-        uses: actions/checkout@v3  # Updated version
+        uses: actions/checkout@v3 # Updated version
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3  # Updated version
-=======
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
->>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
+        uses: actions/setup-node@v3 # Updated version
         with:
-          node-version: '16'
+          node-version: "16"
 
       - name: Install backend dependencies
         working-directory: ./backend
@@ -78,19 +71,12 @@ jobs:
 
     steps:
       - name: Check out code
-<<<<<<< HEAD
-        uses: actions/checkout@v3  # Updated version
+        uses: actions/checkout@v3 # Updated version
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3  # Updated version
-=======
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
->>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
+        uses: actions/setup-node@v3 # Updated version
         with:
-          node-version: '16'
+          node-version: "16"
 
       - name: Install frontend dependencies
         working-directory: ./frontend
@@ -104,33 +90,19 @@ jobs:
         working-directory: ./frontend
         run: npm run build
 
-<<<<<<< HEAD
   # Flutter job for the flutter branch
   flutter:
-    if: github.ref == 'refs/heads/flutter'  # Run only on flutter branch
-=======
-  # Flutter job only for the flutter branch
-  flutter:
-    if: github.ref == 'refs/heads/flutter'
->>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
+    if: github.ref == 'refs/heads/flutter' # Run only on flutter branch
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out code
-<<<<<<< HEAD
-        uses: actions/checkout@v3  # Updated version
-=======
-        uses: actions/checkout@v2
->>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
+        uses: actions/checkout@v3 # Updated version
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-<<<<<<< HEAD
-          flutter-version: '2.5.3'  # Ensure this version is supported in the workflow
-=======
-          flutter-version: '2.5.3'
->>>>>>> c8177e55e431889de92079709b9c763dc8ca6ff1
+          flutter-version: "2.5.3" # Ensure this version is supported in the workflow
 
       - name: Install dependencies
         run: flutter pub get

@@ -1,9 +1,16 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
-  content: ["index.html"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./public/index.html",
+  ],
   theme: {
     extend: {},
+    fontFamily: {
+      baloo: ['"Baloo Bhai 2"', "cursive"],
+    },
   },
   plugins: [],
-}
-
+};
