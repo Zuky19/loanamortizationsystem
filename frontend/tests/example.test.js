@@ -1,6 +1,6 @@
 // example.test.js
-import { expect, test } from 'vitest';
+import { expect, test } from "vitest";
 
-test('sample test', () => {
+test("sample test", () => {
   expect(true).toBe(true);
 });
